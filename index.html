@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本語ライティング参考集 | ai-site-writing</title>
+<meta name="description" content="コーポレートサイトの日本語文面を書くための、表記ルールと面別の文例集。公用文作成の考え方・SmartHR・Ubie などの公開ガイドラインと、実企業サイトの実例をまとめたもの。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --fg:#1a1a1a; --muted:#6b6b6b; --line:#e2e2e2;
+  --soft:#f7f7f7; --soft2:#efefef; --accent:#1a1a1a;
+  --ng:#b23b3b; --ok:#2f6b47;
+  --sidebar:280px;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#141414; --fg:#ededed; --muted:#9a9a9a; --line:#2e2e2e;
+         --soft:#1c1c1c; --soft2:#232323; --accent:#ededed;
+         --ng:#e08585; --ok:#7fc79b; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:15px; line-height:2;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; gap:16px;
+  padding:0 20px; height:56px;
+  background:var(--bg); border-bottom:1px solid var(--line);
+}
+header .brand{font-weight:700; font-size:14px; letter-spacing:.02em; white-space:nowrap}
+header .brand span{color:var(--muted); font-weight:400; margin-left:10px; font-size:12px}
+header .spacer{flex:1}
+#search{
+  width:min(320px,42vw); height:34px; padding:0 12px;
+  border:1px solid var(--line); border-radius:4px;
+  background:var(--soft); color:var(--fg); font-size:13px;
+  font-family:inherit;
+}
+#search:focus{outline:none; border-color:var(--muted)}
+#menuBtn{
+  display:none; width:34px; height:34px; border:1px solid var(--line);
+  border-radius:4px; background:var(--soft); color:var(--fg); cursor:pointer; font-size:15px;
+}
+.gh{font-size:12px; color:var(--muted); text-decoration:none; white-space:nowrap}
+.gh:hover{color:var(--fg)}
+
+/* ---------- layout ---------- */
+.wrap{display:flex; align-items:flex-start}
+nav{
+  position:sticky; top:56px; flex:0 0 var(--sidebar); width:var(--sidebar);
+  height:calc(100vh - 56px); overflow-y:auto;
+  border-right:1px solid var(--line); padding:24px 0 60px;
+}
+nav h3{
+  margin:0 0 10px; padding:0 20px; font-size:11px; letter-spacing:.08em;
+  color:var(--muted); font-weight:500;
+}
+nav .docs{list-style:none; margin:0 0 28px; padding:0}
+nav .docs li a{
+  display:block; padding:8px 20px; font-size:13.5px; text-decoration:none;
+  line-height:1.6; border-left:2px solid transparent;
+}
+nav .docs li a:hover{background:var(--soft)}
+nav .docs li a.on{border-left-color:var(--accent); background:var(--soft); font-weight:500}
+nav .docs li a small{display:block; color:var(--muted); font-size:11px; font-weight:400}
+#toc{list-style:none; margin:0; padding:0 0 0 0; border-top:1px solid var(--line); padding-top:20px}
+#toc li a{
+  display:block; padding:4px 20px 4px 20px; font-size:12.5px; line-height:1.7;
+  color:var(--muted); text-decoration:none; border-left:2px solid transparent;
+}
+#toc li a:hover{color:var(--fg)}
+#toc li a.on{color:var(--fg); border-left-color:var(--accent)}
+#toc li.lv3 a{padding-left:34px; font-size:12px}
+
+main{flex:1; min-width:0; padding:44px 48px 120px; max-width:920px}
+
+/* ---------- markdown ---------- */
+.md h1{
+  font-size:27px; line-height:1.5; margin:0 0 10px; font-weight:700; letter-spacing:.01em;
+}
+.md > p:first-of-type{color:var(--muted); font-size:14px; margin-top:0}
+.md h2{
+  font-size:20px; margin:56px 0 18px; padding-bottom:10px;
+  border-bottom:1px solid var(--line); font-weight:700; line-height:1.6;
+  scroll-margin-top:72px;
+}
+.md h3{font-size:16px; margin:36px 0 12px; font-weight:700; scroll-margin-top:72px}
+.md h4{font-size:14px; margin:24px 0 8px; font-weight:700; color:var(--muted)}
+.md p{margin:0 0 18px}
+.md ul,.md ol{margin:0 0 18px; padding-left:1.5em}
+.md li{margin-bottom:6px}
+.md li > ul{margin-top:6px}
+.md code{
+  background:var(--soft2); padding:2px 6px; border-radius:3px;
+  font-size:.88em; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.md pre{
+  background:var(--soft); border:1px solid var(--line); border-radius:5px;
+  padding:16px 18px; overflow-x:auto; line-height:1.75; margin:0 0 20px;
+}
+.md pre code{background:none; padding:0; font-size:12.5px}
+.md blockquote{
+  margin:0 0 20px; padding:2px 0 2px 20px;
+  border-left:3px solid var(--line); color:var(--muted);
+}
+.md blockquote p{margin:0 0 8px}
+.md blockquote p:last-child{margin:0}
+.md hr{border:0; border-top:1px solid var(--line); margin:48px 0}
+.md a{color:var(--fg); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--line)}
+.md a:hover{text-decoration-color:var(--fg)}
+.md strong{font-weight:700}
+
+.tableWrap{overflow-x:auto; margin:0 0 24px; border:1px solid var(--line); border-radius:5px}
+.md table{border-collapse:collapse; width:100%; font-size:13.5px; line-height:1.8}
+.md th,.md td{padding:10px 14px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line)}
+.md th{background:var(--soft); font-weight:500; font-size:12px; color:var(--muted); white-space:nowrap}
+.md tr:last-child td{border-bottom:0}
+.md td:first-child{white-space:normal}
+.ng{color:var(--ng)}
+.ok{color:var(--ok)}
+
+mark{background:#ffe9a8; color:#1a1a1a; border-radius:2px; padding:0 2px}
+@media (prefers-color-scheme: dark){ mark{background:#6b5a1f; color:#fff} }
+
+.hidden{display:none !important}
+#noHit{color:var(--muted); font-size:13px; padding:40px 0}
+
+footer{
+  border-top:1px solid var(--line); margin-top:60px; padding-top:24px;
+  color:var(--muted); font-size:12px; line-height:1.9;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  #menuBtn{display:block}
+  nav{
+    position:fixed; top:56px; left:0; z-index:40;
+    background:var(--bg); transform:translateX(-100%); transition:transform .18s ease;
+    width:min(300px,84vw); flex-basis:auto;
+    box-shadow:0 0 0 100vmax rgba(0,0,0,0); pointer-events:none;
+  }
+  nav.open{transform:translateX(0); pointer-events:auto; box-shadow:2px 0 24px rgba(0,0,0,.18)}
+  main{padding:28px 20px 100px}
+  header .brand span{display:none}
+  #search{width:min(200px,40vw)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button id="menuBtn" aria-label="目次を開く">☰</button>
+  <div class="brand">日本語ライティング参考集<span>ai-site-writing</span></div>
+  <div class="spacer"></div>
+  <input id="search" type="search" placeholder="語句で絞り込む（例：御社、長音、数字）" autocomplete="off">
+  <a class="gh" href="https://github.com/hiroho-t/ai-site-writing" target="_blank" rel="noopener">GitHub</a>
+</header>
+
+<div class="wrap">
+  <nav id="nav">
+    <h3>ドキュメント</h3>
+    <ul class="docs" id="docs"></ul>
+    <h3>このページの目次</h3>
+    <ul id="toc"></ul>
+  </nav>
+  <main>
+    <div class="md" id="content">読み込んでいます…</div>
+    <div id="noHit" class="hidden"></div>
+    <footer>
+      出典：<a href="https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93651301_01.pdf" target="_blank" rel="noopener">公用文作成の考え方</a>／<a href="https://smarthr.design/products/contents/" target="_blank" rel="noopener">SmartHR Design System</a>／<a href="https://vitals.ubie.life/ux-writing/" target="_blank" rel="noopener">Ubie Vitals</a>／<a href="https://www.jtf.jp/pdf/jtf_style_guide.pdf" target="_blank" rel="noopener">JTF日本語標準スタイルガイド</a> ほか。<br>
+      他社サイトからの引用は出典URLを併記した短い引用にとどめています。
+    </footer>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+const DOCS = [
+  {id:'01', file:'01_表記ルール.md',     title:'01　表記ルール',     sub:'文体・呼称・漢字・カタカナ・数字・記号'},
+  {id:'02', file:'02_文章の組み立て.md', title:'02　文章の組み立て', sub:'上から目線と抽象の原因、敬語の距離感'},
+  {id:'03', file:'03_文例と型.md',       title:'03　文例と型',       sub:'共通NG→OK、面別の型と実例'},
+  {id:'04', file:'04_出典.md',           title:'04　出典',           sub:'参照した公開ガイドラインと企業サイト'},
+];
+
+const content = document.getElementById('content');
+const tocEl   = document.getElementById('toc');
+const docsEl  = document.getElementById('docs');
+const nav     = document.getElementById('nav');
+const search  = document.getElementById('search');
+const noHit   = document.getElementById('noHit');
+const cache   = {};
+let current   = null;
+
+/* sidebar doc list */
+DOCS.forEach(d=>{
+  const li=document.createElement('li');
+  li.innerHTML='<a href="#/'+d.id+'" data-id="'+d.id+'">'+d.title+'<small>'+d.sub+'</small></a>';
+  docsEl.appendChild(li);
+});
+
+function slug(t,i){ return 'h-'+i+'-'+t.replace(/[^\wぁ-んァ-ヶ一-龠]+/g,'-').slice(0,24); }
+
+async function load(id){
+  const doc = DOCS.find(d=>d.id===id) || DOCS[0];
+  current = doc.id;
+  document.querySelectorAll('#docs a').forEach(a=>a.classList.toggle('on', a.dataset.id===doc.id));
+
+  if(!cache[doc.id]){
+    try{
+      const res = await fetch(encodeURIComponent(doc.file));
+      if(!res.ok) throw new Error(res.status);
+      cache[doc.id] = await res.text();
+    }catch(e){
+      content.innerHTML = '<h1>読み込めませんでした</h1><p>'+doc.file+' を取得できませんでした。('+e.message+')</p>';
+      tocEl.innerHTML=''; return;
+    }
+  }
+
+  content.innerHTML = marked.parse(cache[doc.id]);
+  decorate();
+  buildToc();
+  applyFilter();
+  document.title = doc.title.replace(/\s+/g,' ') + ' | 日本語ライティング参考集';
+  window.scrollTo(0,0);
+  nav.classList.remove('open');
+}
+
+function decorate(){
+  /* wrap tables for horizontal scroll */
+  content.querySelectorAll('table').forEach(t=>{
+    if(t.parentElement.classList.contains('tableWrap')) return;
+    const w=document.createElement('div'); w.className='tableWrap';
+    t.parentNode.insertBefore(w,t); w.appendChild(t);
+  });
+  /* colour the ❌ / ⭕️ marks */
+  const walk=document.createTreeWalker(content,NodeFilter.SHOW_TEXT);
+  const targets=[];
+  while(walk.nextNode()){
+    const n=walk.currentNode;
+    if(/[❌⭕]/.test(n.nodeValue) && n.parentElement.tagName!=='CODE') targets.push(n);
+  }
+  targets.forEach(n=>{
+    const html=n.nodeValue
+      .replace(/❌/g,'<span class="ng">❌</span>')
+      .replace(/⭕️?/g,'<span class="ok">⭕️</span>');
+    const span=document.createElement('span'); span.innerHTML=html;
+    n.parentNode.replaceChild(span,n);
+  });
+  /* external links open in new tab */
+  content.querySelectorAll('a[href^="http"]').forEach(a=>{a.target='_blank'; a.rel='noopener';});
+  /* internal .md links -> hash routes */
+  content.querySelectorAll('a[href$=".md"]').forEach(a=>{
+    const f=decodeURIComponent(a.getAttribute('href'));
+    const d=DOCS.find(x=>x.file===f);
+    if(d) a.setAttribute('href','#/'+d.id);
+  });
+}
+
+function buildToc(){
+  tocEl.innerHTML='';
+  const hs=content.querySelectorAll('h2,h3');
+  hs.forEach((h,i)=>{
+    if(!h.id) h.id=slug(h.textContent,i);
+    const li=document.createElement('li');
+    if(h.tagName==='H3') li.className='lv3';
+    const a=document.createElement('a');
+    a.href='#'+h.id; a.textContent=h.textContent;
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      h.scrollIntoView({behavior:'smooth',block:'start'});
+      history.replaceState(null,'','#/'+current);
+      nav.classList.remove('open');
+    });
+    li.appendChild(a); tocEl.appendChild(li);
+  });
+  observeHeadings(hs);
+}
+
+let obs=null;
+function observeHeadings(hs){
+  if(obs) obs.disconnect();
+  const links=[...tocEl.querySelectorAll('a')];
+  obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(!en.isIntersecting) return;
+      links.forEach(l=>l.classList.toggle('on', l.getAttribute('href')==='#'+en.target.id));
+    });
+  },{rootMargin:'-70px 0px -75% 0px'});
+  hs.forEach(h=>obs.observe(h));
+}
+
+/* ---------- search / filter ---------- */
+function clearMarks(root){
+  root.querySelectorAll('mark').forEach(m=>{
+    const t=document.createTextNode(m.textContent);
+    m.parentNode.replaceChild(t,m);
+  });
+  root.normalize();
+}
+function applyFilter(){
+  const q=search.value.trim();
+  const blocks=[...content.children];
+  clearMarks(content);
+  if(!q){
+    blocks.forEach(b=>b.classList.remove('hidden'));
+    noHit.classList.add('hidden');
+    return;
+  }
+  const rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  let hits=0;
+  blocks.forEach(b=>{
+    const isHeading=/^H[1-4]$/.test(b.tagName);
+    if(isHeading){ b.classList.remove('hidden'); return; }
+    if(rx.test(b.textContent)){
+      b.classList.remove('hidden'); hits++;
+      highlight(b,q);
+    }else{
+      b.classList.add('hidden');
+    }
+  });
+  /* hide headings with nothing under them */
+  let pending=[];
+  blocks.forEach(b=>{
+    if(/^H[1-4]$/.test(b.tagName)){ flush(pending); pending=[b]; }
+    else if(pending.length){ if(!b.classList.contains('hidden')) pending.push('KEEP'); }
+  });
+  flush(pending);
+  function flush(arr){
+    if(!arr.length) return;
+    const keep=arr.includes('KEEP');
+    if(!keep && arr[0] && arr[0].tagName) arr[0].classList.add('hidden');
+  }
+  noHit.classList.toggle('hidden', hits>0);
+  if(!hits) noHit.textContent='「'+q+'」はこのページに見つかりませんでした。他のドキュメントも確認してください。';
+}
+function highlight(el,q){
+  const rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  const walk=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+  const list=[];
+  while(walk.nextNode()) if(rx.test(walk.currentNode.nodeValue)) list.push(walk.currentNode);
+  list.forEach(n=>{
+    const span=document.createElement('span');
+    span.innerHTML=n.nodeValue.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))
+                              .replace(rx,m=>'<mark>'+m+'</mark>');
+    n.parentNode.replaceChild(span,n);
+  });
+}
+
+let t=null;
+search.addEventListener('input',()=>{ clearTimeout(t); t=setTimeout(applyFilter,140); });
+
+document.getElementById('menuBtn').addEventListener('click',()=>nav.classList.toggle('open'));
+
+function route(){
+  const m=location.hash.match(/^#\/(\d+)/);
+  load(m?m[1]:'01');
+}
+window.addEventListener('hashchange',route);
+route();
+</script>
+</body>
+</html>
