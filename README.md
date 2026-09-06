@@ -5,6 +5,9 @@ Claude Codeでサイトの文面を書くときに参照する、日本語ライ
 
 **公開サイト**：https://hiroho-t.github.io/ai-site-writing/
 
+記事・オウンドメディアの書き方は別リポジトリ。
+→ **[ai-site-writing-blog](https://github.com/hiroho-t/ai-site-writing-blog)**（[サイト](https://hiroho-t.github.io/ai-site-writing-blog/)）
+
 ## 構成
 
 ### セクション別の事例 — `sections/`
@@ -65,5 +68,5 @@ sections/01_会社紹介.md と rules/03_共通NG.md を読んでから、会社
 - 他社の文面は短い引用＋出典URLにとどめる。全文を転記しない。
 - 流用するのは文そのものではなく、抽出した【型】と【言い回し】。
 - コーポレートサイトとサービスサイトの面を分けて置く。
-- **記事（SEO記事・オウンドメディア本文）は、このリポジトリでは扱わない。** 書き手の立場も見出しの作り方も別物のため。記事は `seo-article` `writing-rules` スキルの担当。
+- **記事（SEO記事・オウンドメディア本文）は、このリポジトリでは扱わない。** 書き手の立場も見出しの作り方も別物のため。→ [ai-site-writing-blog](https://github.com/hiroho-t/ai-site-writing-blog)
 - 沿革は集めない。事実の列挙であり、文面としての参考価値が小さいため。
