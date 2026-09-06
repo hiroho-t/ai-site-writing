@@ -76,7 +76,12 @@ nav h3{
   margin:0 0 10px; padding:0 20px; font-size:11px; letter-spacing:.08em;
   color:var(--muted); font-weight:500;
 }
-nav .docs{list-style:none; margin:0 0 28px; padding:0}
+nav .docs{list-style:none; margin:0 0 22px; padding:0}
+nav .grouplabel{
+  margin:0 0 8px; padding:0 20px; font-size:11px; letter-spacing:.08em;
+  color:var(--muted); font-weight:500;
+}
+nav .grouplabel.second{margin-top:6px}
 nav .docs li a{
   display:block; padding:8px 20px; font-size:13.5px; text-decoration:none;
   line-height:1.6; border-left:2px solid transparent;
@@ -179,8 +184,7 @@ footer{
 
 <div class="wrap">
   <nav id="nav">
-    <h3>ドキュメント</h3>
-    <ul class="docs" id="docs"></ul>
+    <div id="docs"></div>
     <h3>このページの目次</h3>
     <ul id="toc"></ul>
   </nav>
@@ -196,12 +200,29 @@ footer{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
 <script>
-const DOCS = [
-  {id:'01', file:'01_表記ルール.md',     title:'01　表記ルール',     sub:'文体・呼称・漢字・カタカナ・数字・記号'},
-  {id:'02', file:'02_文章の組み立て.md', title:'02　文章の組み立て', sub:'上から目線と抽象の原因、敬語の距離感'},
-  {id:'03', file:'03_文例と型.md',       title:'03　文例と型',       sub:'共通NG→OK、面別の型と実例'},
-  {id:'04', file:'04_出典.md',           title:'04　出典',           sub:'参照した公開ガイドラインと企業サイト'},
+const GROUPS = [
+  { label:'セクション別の事例', docs:[
+    {id:'s0', file:'sections/00_一覧.md',                 title:'一覧',                       sub:'セクションの索引'},
+    {id:'s1', file:'sections/01_会社紹介.md',             title:'01　会社紹介',               sub:'何をしている会社かを事実で示す'},
+    {id:'s2', file:'sections/02_ミッション.md',           title:'02　ミッション・ビジョン',   sub:'理念に必ず説明文を付ける'},
+    {id:'s3', file:'sections/03_代表メッセージ.md',       title:'03　代表メッセージ',         sub:'宛先で書き方が変わる'},
+    {id:'s4', file:'sections/04_サービス紹介.md',         title:'04　サービス紹介',           sub:'対象と範囲を先に出す'},
+    {id:'s5', file:'sections/05_課題提起.md',             title:'05　課題提起',               sub:'恐怖で動かさない'},
+    {id:'s6', file:'sections/06_実績と数字.md',           title:'06　実績・数字',             sub:'基準時点と母数をセットで'},
+    {id:'s7', file:'sections/07_採用.md',                 title:'07　採用',                   sub:'盛らない。未達成も書く'},
+    {id:'s8', file:'sections/08_よくある質問.md',         title:'08　よくある質問',           sub:'できないことを先に書く'},
+    {id:'s9', file:'sections/09_お問い合わせ導線.md',     title:'09　お問い合わせ導線',       sub:'時間・費用・次を添える'},
+  ]},
+  { label:'ルール', docs:[
+    {id:'r2', file:'rules/02_文章の組み立て.md', title:'文章の組み立て', sub:'上から目線と抽象の原因'},
+    {id:'r3', file:'rules/03_共通NG.md',         title:'共通NG→OK',      sub:'全セクション共通の検算'},
+    {id:'r1', file:'rules/01_表記ルール.md',     title:'表記ルール',     sub:'漢字・カタカナ・数字・記号'},
+  ]},
+  { label:'その他', docs:[
+    {id:'x1', file:'出典.md', title:'出典', sub:'公開ガイドラインと企業サイト'},
+  ]},
 ];
+const DOCS = GROUPS.flatMap(g=>g.docs);
 
 const content = document.getElementById('content');
 const tocEl   = document.getElementById('toc');
@@ -212,11 +233,18 @@ const noHit   = document.getElementById('noHit');
 const cache   = {};
 let current   = null;
 
-/* sidebar doc list */
-DOCS.forEach(d=>{
-  const li=document.createElement('li');
-  li.innerHTML='<a href="#/'+d.id+'" data-id="'+d.id+'">'+d.title+'<small>'+d.sub+'</small></a>';
-  docsEl.appendChild(li);
+/* sidebar: grouped doc list */
+GROUPS.forEach((g,gi)=>{
+  const h=document.createElement('div');
+  h.className='grouplabel'+(gi?' second':''); h.textContent=g.label;
+  docsEl.appendChild(h);
+  const ul=document.createElement('ul'); ul.className='docs';
+  g.docs.forEach(d=>{
+    const li=document.createElement('li');
+    li.innerHTML='<a href="#/'+d.id+'" data-id="'+d.id+'">'+d.title+'<small>'+d.sub+'</small></a>';
+    ul.appendChild(li);
+  });
+  docsEl.appendChild(ul);
 });
 
 function slug(t,i){ return 'h-'+i+'-'+t.replace(/[^\wぁ-んァ-ヶ一-龠]+/g,'-').slice(0,24); }
@@ -228,7 +256,7 @@ async function load(id){
 
   if(!cache[doc.id]){
     try{
-      const res = await fetch(encodeURIComponent(doc.file));
+      const res = await fetch(doc.file.split('/').map(encodeURIComponent).join('/'));
       if(!res.ok) throw new Error(res.status);
       cache[doc.id] = await res.text();
     }catch(e){
@@ -271,8 +299,8 @@ function decorate(){
   content.querySelectorAll('a[href^="http"]').forEach(a=>{a.target='_blank'; a.rel='noopener';});
   /* internal .md links -> hash routes */
   content.querySelectorAll('a[href$=".md"]').forEach(a=>{
-    const f=decodeURIComponent(a.getAttribute('href'));
-    const d=DOCS.find(x=>x.file===f);
+    const f=decodeURIComponent(a.getAttribute('href')).replace(/^\.\//,'');
+    const d=DOCS.find(x=>x.file===f||x.file.endsWith('/'+f));
     if(d) a.setAttribute('href','#/'+d.id);
   });
 }
@@ -373,8 +401,8 @@ search.addEventListener('input',()=>{ clearTimeout(t); t=setTimeout(applyFilter,
 document.getElementById('menuBtn').addEventListener('click',()=>nav.classList.toggle('open'));
 
 function route(){
-  const m=location.hash.match(/^#\/(\d+)/);
-  load(m?m[1]:'01');
+  const m=location.hash.match(/^#\/([a-z]\d+)/);
+  load(m?m[1]:'s0');
 }
 window.addEventListener('hashchange',route);
 route();
