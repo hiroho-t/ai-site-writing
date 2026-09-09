@@ -7,6 +7,8 @@ Claude Codeでサイトの文面を書くときに参照する、日本語ライ
 
 記事・オウンドメディアの書き方は別リポジトリ。
 → **[ai-site-writing-blog](https://github.com/hiroho-t/ai-site-writing-blog)**（[サイト](https://hiroho-t.github.io/ai-site-writing-blog/)）
+スライド資料の文面も別リポジトリ。
+→ **[ai-slide-writing](https://github.com/hiroho-t/ai-slide-writing)**（[サイト](https://hiroho-t.github.io/ai-slide-writing/)）
 
 ## 構成
 
@@ -69,4 +71,5 @@ sections/01_会社紹介.md と rules/03_共通NG.md を読んでから、会社
 - 流用するのは文そのものではなく、抽出した【型】と【言い回し】。
 - コーポレートサイトとサービスサイトの面を分けて置く。
 - **記事（SEO記事・オウンドメディア本文）は、このリポジトリでは扱わない。** 書き手の立場も見出しの作り方も別物のため。→ [ai-site-writing-blog](https://github.com/hiroho-t/ai-site-writing-blog)
+- **スライド資料も、このリポジトリでは扱わない。** 1枚に入る文字数と、体言止めの扱いが変わるため。→ [ai-slide-writing](https://github.com/hiroho-t/ai-slide-writing)
 - 沿革は集めない。事実の列挙であり、文面としての参考価値が小さいため。
